@@ -1,0 +1,27 @@
+{
+  "standard": [
+    "Ascent",
+    "Breeze",
+    "Bind",
+    "Fracture",
+    "Haven",
+    "Icebox",
+    "Lotus",
+    "Pearl",
+    "Split"
+  ],
+  "rotation": [
+    "Ascent",
+    "Bind",
+    "Fracture",
+    "Haven",
+    "Lotus",
+    "Pearl",
+    "Split"
+  ],
+  "tdm": [
+    "Piazza",
+    "Disctrict",
+    "Kabah"
+  ]
+}
