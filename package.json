@@ -34,7 +34,9 @@
   },
   "scripts": {
     "build": "tsc --build",
-    "start": "ts-node-dev src/server.ts",
+    "serve": "node dist/server.js",
+    "start": "npm run serve",
+    "dev": "ts-node-dev src/server.ts",
     "test:watch": "npm run test -- --watchAll"
   }
 }

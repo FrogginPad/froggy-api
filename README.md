@@ -15,5 +15,5 @@ API for Froggy and other things
     ```
 
 6. Install dependencies: `npm install`
-7. Run: `npm start`
+7. Run: `npm dev`
 8. Hit [localhost:4000/ping](http://localhost:4000/ping)
