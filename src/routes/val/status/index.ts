@@ -23,22 +23,24 @@ router.get(`/val/status`, async (ctx) => {
     if(response.data.maintenances.length) {
       ctx.body = {
         status: "maintenances",
-        ...response.data.maintenance[0]
+        maintenance_status: response.data.maintenances[0].maintenance_status,
+        title: response.data.maintenances[0].titles[0].content,
+        additionalData: response.data.maintenances
       }
     }
 
     if(response.data.incidents.length) {
       ctx.body = {
         status: "incidents",
-        ...response.data.incidents[0]
+        severity: response.data.incidents[0].incident_severity,
+        title: response.data.incidents[0].titles[0].content,
+        additionalData: response.data.incidents
       }
     }
  
     if(!response.data.maintenances.length && !response.data.incidents.length) {
       ctx.body = { status: "success" }
     }
-
-
 
   } catch (err) {
     console.error(err);
