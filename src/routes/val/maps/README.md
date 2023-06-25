@@ -42,7 +42,7 @@ These endpoints allow you to request maps.
   ],
   "tdm": [
     "Piazza",
-    "Disctric",
+    "District",
     "Kabah"
   ]
 }
@@ -90,7 +90,7 @@ These endpoints allow you to request maps.
 {
   "tdm": [
     "Piazza",
-    "Disctric",
+    "District",
     "Kabah"
   ]
 }
