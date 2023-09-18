@@ -27,8 +27,8 @@ app.group('/val', app => app
     .get('/status', valStatus, {...valStatusDetail})
     .get('/content', valContent, {...valContentDetails})
     .group('/maps', app => app
-      .get(':type', valMaps, {...valMapsDetail})
-      .get('/random/:type', valMapsRandom, {...valMapsRandomDetail})
+      .get('', valMaps, {...valMapsDetail})
+      .get('/random', valMapsRandom, {...valMapsRandomDetail})
     )
 );
 
