@@ -18,4 +18,8 @@ You need [Node.js v^16.9.0](https://nodejs.org/en/download/) & [bun](https://bun
 
 4. Install dependencies: `bun install`
 5. Run: `bun dev`
-6. Hit [localhost:4000/ping](http://localhost:4000/ping)
+6. Hit [localhost:3000/ping](http://localhost:4000/ping)
+
+## Testing
+
+You can run [localhost:3000/swagger](http://localhost:4000/swagger) to get the swagger spec
