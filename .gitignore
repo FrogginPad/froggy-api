@@ -173,3 +173,4 @@ dist
 
 # Added
 .env
+.DS_Store
