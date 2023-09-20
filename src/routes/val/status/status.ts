@@ -2,6 +2,9 @@ import { ENDPOINTS } from "../consts";
 import { config } from "../utils";
 
 export const valStatus = async () => {
+
+  if (!Bun.env.RIOT_API_KEY) { return new Response('No API Key', { status: 401 }) }
+
   const getValAPI = await fetch(ENDPOINTS.status.platformData, config);
   const response = await getValAPI.json()
 
