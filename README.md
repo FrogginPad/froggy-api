@@ -2,18 +2,24 @@
 
 API for Froggy and other things
 
+## Prereq
+
+You need [Node.js v^16.9.0](https://nodejs.org/en/download/) & [bun](https://bun.sh/docs/installation) installed
+
 ## Setup
 
-1. Install [Visual Studio Code](https://code.visualstudio.com/Download)
-2. Install [Node.js](https://nodejs.org/en/download/) (Required: v^16.9.0)
-3. Clone this project `git clone git@github.com:FrogginPad/tadpole.git`
-4. Make a [Riot developer account](https://developer.riotgames.com) & Grab the development API key
-5. Go to `.env.example`, add your key and change filename to `.env`
+1. Clone this project `git clone git@github.com:FrogginPad/tadpole.git`
+2. Make a [Riot developer account](https://developer.riotgames.com) & Grab the development API key
+3. Go to `.env.example`, add your key and change filename to `.env`
 
     ```js
       RIOT_API_KEY=
     ```
 
-6. Install dependencies: `npm install`
-7. Run: `npm dev`
-8. Hit [localhost:4000/ping](http://localhost:4000/ping)
+4. Install dependencies: `bun install`
+5. Run: `bun dev`
+6. Hit [localhost:3000/ping](http://localhost:4000/ping)
+
+## Testing
+
+You can run [localhost:3000/swagger](http://localhost:4000/swagger) to get the swagger spec
