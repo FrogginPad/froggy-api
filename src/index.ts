@@ -8,6 +8,16 @@ import { valStatus, valStatusDetail } from "./routes/val/status";
 import { valMapsRandom, valMaps, valMapsDetail, valMapsRandomDetail } from "./routes/val/maps";
 import { valContent, valContentDetails } from "./routes/val/content";
 import { IType } from './routes/val/maps/maps.d';
+import {
+  vlrGetRankings,
+  vlrGetRankingsDetails,
+  vlrGetEvents,
+  vlrGetEventsDetails,
+  vlrGetUpcomingMatches,
+  vlrGetUpcomingMatchesDetails,
+  vlrGetMatchResults,
+  vlrGetMatchResultsDetails
+} from "./routes/vlr";
 
 const app = new Elysia();
 const PORT = config.port;
@@ -29,6 +39,18 @@ app.group('/val', app => app
     .group('/maps', app => app
       .get('', valMaps, {...valMapsDetail})
       .get('/random', valMapsRandom, {...valMapsRandomDetail})
+    )
+);
+
+// vlr routes
+app.group('/vlr', app => app
+    .get('/rankings/:region', vlrGetRankings, {...vlrGetRankingsDetails})
+    .group('/events', app => app
+      .get('/', vlrGetEvents, {...vlrGetEventsDetails})
+    )
+    .group('/matches', app => app
+      .get('/upcoming', vlrGetUpcomingMatches, {...vlrGetUpcomingMatchesDetails})
+      .get('/results', vlrGetMatchResults, {...vlrGetMatchResultsDetails})
     )
 );
 
