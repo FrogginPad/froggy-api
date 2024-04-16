@@ -7,7 +7,7 @@ import { ping, pingDetail, status, statusDetail } from "./routes/health";
 import { valStatus, valStatusDetail } from "./routes/val/status";
 import { valMapsRandom, valMaps, valMapsDetail, valMapsRandomDetail } from "./routes/val/maps";
 import { valContent, valContentDetails } from "./routes/val/content";
-import { IType } from './routes/val/maps/maps.d';
+
 import {
   vlrGetRankings,
   vlrGetRankingsDetails,
@@ -25,33 +25,37 @@ const PORT = config.port;
 // set CORS
 app.use(cors());
 
-// status routes
-app.get('/ping', ping, {...pingDetail});
-app.get('/status', status, {...statusDetail});
+app.group('/api', app => app
+  
+  // status routes
+  .get('/ping', ping, {...pingDetail})
+  .get('/status', status, {...statusDetail})
+  .group('/v1', app => app
+    // general routes
+    .get('/coinflip', coinflip, {...coinflipDetail})
 
-// general routes
-app.get('/coinflip', coinflip, {...coinflipDetail});
+    // val routes
+    .group('/val', app => app
+        .get('/status', valStatus, {...valStatusDetail})
+        .get('/content', valContent, {...valContentDetails})
+        .group('/maps', app => app
+          .get('', valMaps, {...valMapsDetail})
+          .get('/random', valMapsRandom, {...valMapsRandomDetail})
+        )
+    )
 
-// val routes
-app.group('/val', app => app
-    .get('/status', valStatus, {...valStatusDetail})
-    .get('/content', valContent, {...valContentDetails})
-    .group('/maps', app => app
-      .get('', valMaps, {...valMapsDetail})
-      .get('/random', valMapsRandom, {...valMapsRandomDetail})
+    // vlr routes
+    .group('/vlr', app => app
+        .get('/rankings/:region', vlrGetRankings, {...vlrGetRankingsDetails})
+        .group('/events', app => app
+          .get('/', vlrGetEvents, {...vlrGetEventsDetails})
+        )
+        .group('/matches', app => app
+          .get('/upcoming', vlrGetUpcomingMatches, {...vlrGetUpcomingMatchesDetails})
+          .get('/results', vlrGetMatchResults, {...vlrGetMatchResultsDetails})
+        )
     )
-);
-
-// vlr routes
-app.group('/vlr', app => app
-    .get('/rankings/:region', vlrGetRankings, {...vlrGetRankingsDetails})
-    .group('/events', app => app
-      .get('/', vlrGetEvents, {...vlrGetEventsDetails})
-    )
-    .group('/matches', app => app
-      .get('/upcoming', vlrGetUpcomingMatches, {...vlrGetUpcomingMatchesDetails})
-      .get('/results', vlrGetMatchResults, {...vlrGetMatchResultsDetails})
-    )
+  )
 );
 
 app.use(swagger({
