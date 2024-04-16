@@ -4,9 +4,9 @@ import { cors } from '@elysiajs/cors';
 import { config } from "./config";
 import { coinflip, coinflipDetail } from "./routes/coinflip";
 import { ping, pingDetail, status, statusDetail } from "./routes/health";
-import { valStatus, valStatusDetail } from "./routes/val/status";
-import { valMapsRandom, valMaps, valMapsDetail, valMapsRandomDetail } from "./routes/val/maps";
-import { valContent, valContentDetails } from "./routes/val/content";
+import { valMapsRandom, valMaps, valMapsDetail, valMapsRandomDetail } from "./routes/maps";
+// import { valContent, valContentDetails } from "./routes/val/content";
+// import { valStatus, valStatusDetail } from "./routes/val/status";
 
 import {
   vlrGetRankings,
@@ -32,16 +32,16 @@ app.get('/status', status, {...statusDetail});
 app.group('/v1', app => app
   // general routes
   .get('/coinflip', coinflip, {...coinflipDetail})
-
-  // val routes
-  .group('/val', app => app
-      .get('/status', valStatus, {...valStatusDetail})
-      .get('/content', valContent, {...valContentDetails})
-      .group('/maps', app => app
-        .get('', valMaps, {...valMapsDetail})
-        .get('/random', valMapsRandom, {...valMapsRandomDetail})
-      )
+  .group('/maps', app => app
+    .get('', valMaps, {...valMapsDetail})
+    .get('/random', valMapsRandom, {...valMapsRandomDetail})
   )
+
+  // val routes -- commenting away until api key
+  // .group('/val', app => app
+  //     .get('/status', valStatus, {...valStatusDetail})
+  //     .get('/content', valContent, {...valContentDetails})
+  // )
 
   // vlr routes
   .group('/vlr', app => app

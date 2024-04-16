@@ -16,7 +16,7 @@ export const vlrGetRankings = async (req, res) => {
 export const vlrGetRankingsDetails = {
   detail: {
     summary: 'Gets the VLR rankings',
-    tags: ['Valorant']
+    tags: ['VLR']
   }
 }
 
@@ -32,7 +32,7 @@ export const vlrGetEvents = async (req, res) => {
 export const vlrGetEventsDetails = {
   detail: {
     summary: 'Gets VLR events details',
-    tags: ['Valorant']
+    tags: ['VLR']
   }
 }
 
@@ -47,7 +47,7 @@ export const vlrGetUpcomingMatches = async (req, res) => {
 export const vlrGetUpcomingMatchesDetails = {
   detail: {
     summary: 'Gets VLR upcoming match details',
-    tags: ['Valorant']
+    tags: ['VLR']
   }
 }
 
@@ -62,6 +62,6 @@ export const vlrGetMatchResults = async (req, res) => {
 export const vlrGetMatchResultsDetails = {
   detail: {
     summary: 'Gets VLR match results details',
-    tags: ['Valorant']
+    tags: ['VLR']
   }
 }

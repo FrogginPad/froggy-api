@@ -10,6 +10,6 @@ export const valMaps = () => {
 export const valMapsDetail = {
   detail: {
     summary: 'Gets all VALORANT maps',
-    tags: ['Valorant']
+    tags: ['Functions']
   }
 }

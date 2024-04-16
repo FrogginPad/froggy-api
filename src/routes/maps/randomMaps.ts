@@ -21,6 +21,6 @@ export const valMapsRandom = () => {
 export const valMapsRandomDetail = {
   detail: {
     summary: 'Selects random VALORANT maps for all game modes',
-    tags: ['Valorant']
+    tags: ['Functions']
   }
 }
