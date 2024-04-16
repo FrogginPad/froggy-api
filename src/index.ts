@@ -24,39 +24,37 @@ const PORT = config.port;
 
 // set CORS
 app.use(cors());
-
-app.group('/api', app => app
   
-  // status routes
-  .get('/ping', ping, {...pingDetail})
-  .get('/status', status, {...statusDetail})
-  .group('/v1', app => app
-    // general routes
-    .get('/coinflip', coinflip, {...coinflipDetail})
+// status routes
+app.get('/ping', ping, {...pingDetail});
+app.get('/status', status, {...statusDetail});
 
-    // val routes
-    .group('/val', app => app
-        .get('/status', valStatus, {...valStatusDetail})
-        .get('/content', valContent, {...valContentDetails})
-        .group('/maps', app => app
-          .get('', valMaps, {...valMapsDetail})
-          .get('/random', valMapsRandom, {...valMapsRandomDetail})
-        )
-    )
+app.group('/v1', app => app
+  // general routes
+  .get('/coinflip', coinflip, {...coinflipDetail})
 
-    // vlr routes
-    .group('/vlr', app => app
-        .get('/rankings/:region', vlrGetRankings, {...vlrGetRankingsDetails})
-        .group('/events', app => app
-          .get('/', vlrGetEvents, {...vlrGetEventsDetails})
-        )
-        .group('/matches', app => app
-          .get('/upcoming', vlrGetUpcomingMatches, {...vlrGetUpcomingMatchesDetails})
-          .get('/results', vlrGetMatchResults, {...vlrGetMatchResultsDetails})
-        )
-    )
+  // val routes
+  .group('/val', app => app
+      .get('/status', valStatus, {...valStatusDetail})
+      .get('/content', valContent, {...valContentDetails})
+      .group('/maps', app => app
+        .get('', valMaps, {...valMapsDetail})
+        .get('/random', valMapsRandom, {...valMapsRandomDetail})
+      )
   )
-);
+
+  // vlr routes
+  .group('/vlr', app => app
+      .get('/rankings/:region', vlrGetRankings, {...vlrGetRankingsDetails})
+      .group('/events', app => app
+        .get('/', vlrGetEvents, {...vlrGetEventsDetails})
+      )
+      .group('/matches', app => app
+        .get('/upcoming', vlrGetUpcomingMatches, {...vlrGetUpcomingMatchesDetails})
+        .get('/results', vlrGetMatchResults, {...vlrGetMatchResultsDetails})
+      )
+  )
+)
 
 app.use(swagger({
   documentation: {
