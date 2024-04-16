@@ -1,12 +1,12 @@
 import { Elysia } from "elysia";
 import { swagger } from '@elysiajs/swagger';
 import { cors } from '@elysiajs/cors';
+import { Logestic } from "logestic";
+import staticPlugin from "@elysiajs/static";
 import { config } from "./config";
 import { coinflip, coinflipDetail } from "./routes/coinflip";
 import { ping, pingDetail, status, statusDetail } from "./routes/health";
 import { valMapsRandom, valMaps, valMapsDetail, valMapsRandomDetail } from "./routes/maps";
-// import { valContent, valContentDetails } from "./routes/val/content";
-// import { valStatus, valStatusDetail } from "./routes/val/status";
 
 import {
   vlrGetRankings,
@@ -24,10 +24,13 @@ const PORT = config.port;
 
 // set CORS
 app.use(cors());
+app.use(staticPlugin());
+app.use(Logestic.preset('fancy'));
   
 // status routes
 app.get('/ping', ping, {...pingDetail});
 app.get('/status', status, {...statusDetail});
+app.get('/favicon.ico', () => Bun.file('public/favicon.ico'));
 
 app.group('/v1', app => app
   // general routes
@@ -36,12 +39,6 @@ app.group('/v1', app => app
     .get('', valMaps, {...valMapsDetail})
     .get('/random', valMapsRandom, {...valMapsRandomDetail})
   )
-
-  // val routes -- commenting away until api key
-  // .group('/val', app => app
-  //     .get('/status', valStatus, {...valStatusDetail})
-  //     .get('/content', valContent, {...valContentDetails})
-  // )
 
   // vlr routes
   .group('/vlr', app => app
