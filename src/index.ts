@@ -9,20 +9,15 @@ import { ping, pingDetail, status, statusDetail } from "./routes/health";
 import { valMapsRandom, valMaps, valMapsDetail, valMapsRandomDetail } from "./routes/maps";
 
 import {
-  vlrGetRankings,
-  vlrGetRankingsDetails,
-  vlrGetEvents,
-  vlrGetEventsDetails,
   vlrGetUpcomingMatches,
   vlrGetUpcomingMatchesDetails,
-  vlrGetMatchResults,
-  vlrGetMatchResultsDetails
+  vlrGetTodaysMatches,
+  vlrGetTodaysMatchesDetails
 } from "./routes/vlr";
 
 const app = new Elysia();
 const PORT = config.port;
 
-// set CORS
 app.use(cors());
 app.use(staticPlugin());
 app.use(Logestic.preset('fancy'));
@@ -42,13 +37,9 @@ app.group('/v1', app => app
 
   // vlr routes
   .group('/vlr', app => app
-      .get('/rankings/:region', vlrGetRankings, {...vlrGetRankingsDetails})
-      .group('/events', app => app
-        .get('/', vlrGetEvents, {...vlrGetEventsDetails})
-      )
       .group('/matches', app => app
-        .get('/upcoming', vlrGetUpcomingMatches, {...vlrGetUpcomingMatchesDetails})
-        .get('/results', vlrGetMatchResults, {...vlrGetMatchResultsDetails})
+        .get('/upcoming', () => vlrGetUpcomingMatches(), {...vlrGetUpcomingMatchesDetails})
+        .get('/today', () => vlrGetTodaysMatches(), {...vlrGetTodaysMatchesDetails})
       )
   )
 )
