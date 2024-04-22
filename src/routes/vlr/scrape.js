@@ -1,15 +1,20 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
 
-const upcomingMatches = {
+let upcomingMatches = {
   matches: [],
 };
 
-const todaysMatches = {
+let todaysMatches = {
   matches: []
 }
 
 export async function scrapeUpcomingMatches() {
+
+  upcomingMatches = {
+    matches: [],
+  };
+
   // Fetch the data
   const { data } = await axios.get("https://www.vlr.gg/matches");
 
@@ -55,6 +60,11 @@ export async function scrapeUpcomingMatches() {
 }
 
 export async function scrapeTodaysMatches() {
+
+  todaysMatches = {
+    matches: []
+  }
+
   // Fetch the data
   const { data } = await axios.get("https://www.vlr.gg/matches");
 
